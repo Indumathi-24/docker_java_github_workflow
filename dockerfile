@@ -12,7 +12,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Use a smaller base image for the final application runtime
-FROM temurin:17-jre-alpine
+FROM eclipse-temurin:17-jre-alpine
 
 # Set the working directory
 WORKDIR /app
