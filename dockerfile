@@ -18,7 +18,7 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
 # Copy the built JAR file from the build stage (adjust 'target/my-calculator-1.0.jar' to your actual JAR path and name)
-COPY --from=build /app/target/my-calculator-1.0.jar ./app.jar
+COPY --from=build /app/target/calculator-1.0.jar ./app.jar
 
 # Command to run the application (adjust 'app.jar' to your actual JAR name)
 CMD ["java", "-jar", "app.jar"]
