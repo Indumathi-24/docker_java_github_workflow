@@ -21,4 +21,4 @@ WORKDIR /app
 COPY --from=build /app/target/java-calculator-1.0.0.jar ./app.jar
 
 # Command to run the application (adjust 'app.jar' to your actual JAR name)
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-cp", "/app", "main.java.Calculator"]
