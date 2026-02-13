@@ -34,9 +34,5 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 
 # Set the entrypoint
-ENTRYPOINT ["java", "-cp", "/app", "com.example.app.HelloDocker"]
+ENTRYPOINT ["java", "-cp", "/app", "main.java.Calculator"]
 
-# Metadata
-LABEL maintainer="devops@example.com"
-LABEL description="Multi-stage Docker build for Java web application"
-LABEL version="1.0"
