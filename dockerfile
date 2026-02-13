@@ -1,24 +1,14 @@
-# Use a Maven base image to build the application
-FROM maven:3.8-openjdk-17 AS build
-
-# Set the working directory
-WORKDIR /app
-
-# Copy the pom.xml and source code
-COPY pom.xml .
-COPY src ./src
-
-# Build the application into a JAR file (adjust for your project structure)
-RUN mvn clean package -DskipTests
-
-# Use a smaller base image for the final application runtime
+# Use an OpenJDK base image with a JDK (Java Development Kit)
 FROM eclipse-temurin:17-jre-alpine
 
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the built JAR file from the build stage (adjust 'target/my-calculator-1.0.jar' to your actual JAR path and name)
-COPY --from=build /app/target/java-calculator-1.0.0.jar ./app.jar
+# Copy the entire src directory from your host machine to the container's working directory
+COPY src/main/java/ /app/
 
-# Command to run the application (adjust 'app.jar' to your actual JAR name)
-ENTRYPOINT ["java", "-cp", "/app", "main.java.Calculator"]
+# Compile the Java file
+RUN javac Calculator.java
+
+# Command to run the compiled Java class when the container starts
+CMD ["java", "Calculator"]
